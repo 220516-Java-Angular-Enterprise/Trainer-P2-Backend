@@ -1,4 +1,4 @@
-package com.revature.yolp.util.annotations;
+package com.revature.yolp.common.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

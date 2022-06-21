@@ -3,7 +3,7 @@ package com.revature.yolp.auth;
 import com.revature.yolp.auth.dtos.requests.LoginRequest;
 import com.revature.yolp.auth.dtos.responses.Principal;
 import com.revature.yolp.user.UserService;
-import com.revature.yolp.util.annotations.Inject;
+import com.revature.yolp.common.annotations.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

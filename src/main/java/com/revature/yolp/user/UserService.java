@@ -2,10 +2,10 @@ package com.revature.yolp.user;
 
 import com.revature.yolp.auth.dtos.requests.LoginRequest;
 import com.revature.yolp.user.dtos.requests.NewUserRequest;
-import com.revature.yolp.util.annotations.Inject;
-import com.revature.yolp.util.custom_exceptions.AuthenticationException;
-import com.revature.yolp.util.custom_exceptions.InvalidRequestException;
-import com.revature.yolp.util.custom_exceptions.ResourceConflictException;
+import com.revature.yolp.common.annotations.Inject;
+import com.revature.yolp.common.custom_exceptions.AuthenticationException;
+import com.revature.yolp.common.custom_exceptions.InvalidRequestException;
+import com.revature.yolp.common.custom_exceptions.ResourceConflictException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

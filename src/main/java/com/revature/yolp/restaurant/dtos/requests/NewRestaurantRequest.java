@@ -1,5 +1,7 @@
 package com.revature.yolp.restaurant.dtos.requests;
 
+import com.revature.yolp.restaurant.Restaurant;
+
 public class NewRestaurantRequest {
     private String name;
     private String city;

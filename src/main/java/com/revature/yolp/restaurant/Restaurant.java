@@ -1,5 +1,7 @@
 package com.revature.yolp.restaurant;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.revature.yolp.restaurant.dtos.requests.NewRestaurantRequest;
 import com.revature.yolp.review.Review;
 
 import javax.persistence.*;
@@ -20,11 +22,23 @@ public class Restaurant {
     @Column(name = "state", nullable = false)
     private String state;
 
-    @OneToMany(mappedBy = "restaurant")
+    @OneToMany(
+            mappedBy = "restaurant",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL
+    )
+    @JsonManagedReference
     private List<Review> reviews;
 
     public Restaurant() {
         super();
+    }
+
+    public Restaurant(String id, NewRestaurantRequest request) {
+        this.id = id;
+        this.name = request.getName();
+        this.city = request.getCity();
+        this.state = request.getState();
     }
 
     public Restaurant(String id, String name, String city, String state, List<Review> reviews) {
