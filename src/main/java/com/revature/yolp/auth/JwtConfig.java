@@ -1,23 +1,29 @@
 package com.revature.yolp.auth;
 
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
 
 @Component
 public class JwtConfig {
-    private final String salt = "laskdjflasdkfsdkfjasdklfjhasdkfikjehfksjdhfklsadjhflskdf";
 
-    private int expiration = 60 * 60 * 1000;
+    //@Value("${jwt.secret}")
+    private String salt = "akjsdhoqwewuyemnbzmxcbvksahgfugd";
+
+    @Value("#{24 * 60 * 60 * 1000}") // number of milliseconds in a day
+    private int expiration;
 
     private final SignatureAlgorithm sigAlg = SignatureAlgorithm.HS256;
 
-    private final Key signingKey;
+    private Key signingKey;
 
-    public JwtConfig() {
+    @PostConstruct
+    public void createSigningKey() {
         byte[] saltyBytes = DatatypeConverter.parseBase64Binary(salt);
         signingKey = new SecretKeySpec(saltyBytes, sigAlg.getJcaName());
     }
@@ -33,4 +39,5 @@ public class JwtConfig {
     public Key getSigningKey() {
         return signingKey;
     }
+
 }

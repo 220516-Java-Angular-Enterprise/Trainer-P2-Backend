@@ -1,4 +1,4 @@
-package com.revature.yolp.util.custom_exceptions;
+package com.revature.yolp.common.custom_exceptions;
 
 public class AuthenticationException extends RuntimeException {
     public AuthenticationException() {

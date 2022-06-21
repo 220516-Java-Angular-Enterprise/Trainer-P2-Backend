@@ -1,15 +1,19 @@
 package com.revature.yolp.user;
 
-import com.revature.yolp.user.UserService;
+import com.revature.yolp.auth.TokenService;
+import com.revature.yolp.auth.dtos.responses.Principal;
+import com.revature.yolp.common.util.web.Authenticated;
+import com.revature.yolp.common.util.web.Secured;
 import com.revature.yolp.user.dtos.requests.NewUserRequest;
-import com.revature.yolp.util.custom_exceptions.InvalidRequestException;
-import com.revature.yolp.util.custom_exceptions.ResourceConflictException;
-import com.revature.yolp.util.annotations.Inject;
+import com.revature.yolp.common.custom_exceptions.InvalidRequestException;
+import com.revature.yolp.common.custom_exceptions.ResourceConflictException;
+import com.revature.yolp.common.annotations.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -27,8 +31,10 @@ public class UserController {
         this.userService = userService;
     }
 
+
+    @CrossOrigin
     @GetMapping
-    public @ResponseBody List<User> getAllUsers() {
+    public @ResponseBody List<User> getAllUsers(HttpServletResponse resp) {
         return userService.getAllUsers();
     }
 

@@ -1,8 +1,12 @@
 package com.revature.yolp.user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.revature.yolp.review.Review;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,10 +25,16 @@ public class User {
     @Column(name = "role", nullable = false)
     private String role;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(
+            mappedBy = "user",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL
+    )
+    @JsonManagedReference
     private List<Review> reviews;
 
     public User() {
+        reviews = new ArrayList<>();
     }
 
     public User(String username, String password, String role) {
